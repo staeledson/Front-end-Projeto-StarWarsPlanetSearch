@@ -14,6 +14,7 @@ function useFetch() {
 
         const data = await requestAPI();
         setPlanets(data);
+        setIsLoading(false);
         console.log(data);
       } catch (error) {
         setErrors(error);
