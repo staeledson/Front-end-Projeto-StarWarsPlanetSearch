@@ -2,11 +2,73 @@
   padding: 0;
   margin: 0;
   vertical-align: baseline;
+  text-align: center;
   list-style: none;
-  border: 0
+  border: 0;
 }
 
 body {
   background-color: rgb(34, 32, 32);
   color: white;
+  width: 100%;
+}
+
+.border {
+  border: solid rgba(240, 197, 67, 0.304) 1px;
+  margin: 0;
+  padding: 1;
+}
+
+.tread {
+  border: solid rgba(240, 196, 67, 0.355) 1px;
+  background-color: rgba(240, 197, 67, 0.616);
+  margin: 0;
+  padding: 1;
+}
+
+.filter_elements {
+  border-radius: 5px;
+  margin: 5px;
+  padding-left: 10px;
+  width: 230px;
+  height: 30px;
+}
+
+.form_filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  border: solid rgba(240, 196, 67, 0.355) 3px;
+  width: 100%;
+  height: 80px;
+  margin-top: 100px;
+}
+
+.form_input_element {
+  border-radius: 5px;
+  margin: 5px;
+  padding-left: 10px;
+  width: 100px;
+  height: 30px;
+}
+
+h1 {
+  margin-top: 55px;
+  font-size: 50px;
+}
+
+.filter_space {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.filter_itens {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: flex-start;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 10px;
 }

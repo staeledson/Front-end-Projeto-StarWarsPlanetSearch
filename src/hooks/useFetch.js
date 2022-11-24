@@ -3,29 +3,23 @@ import requestAPI from '../services/api';
 
 function useFetch() {
   const [isLoading, setIsLoading] = useState(false);
-  const [planets, setPlanets] = useState();
+  const [planets, setPlanets] = useState([]);
   const [errors, setErrors] = useState(null);
-  const url = 'https://swapi.dev/api/planets';
 
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
-
         const data = await requestAPI();
         setPlanets(data);
         setIsLoading(false);
-        console.log(data);
       } catch (error) {
         setErrors(error);
       } finally {
         setIsLoading(false);
       }
     }
-
-    if (url) {
-      fetchData();
-    }
+    fetchData();
   }, []);
   return { isLoading, planets, errors };
 }
