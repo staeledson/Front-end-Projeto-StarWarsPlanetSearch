@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../context/AppContext';
 
-export default function TableBody(d) {
-  const { data } = d;
+export default function TableBody() {
+  const { filtered } = useContext(AppContext);
   return (
     <tbody>
-      {data && data.map((planet, index) => (
+      {filtered && filtered.map((planet, index) => (
         <tr key={ index }>
           <td className="border">{planet.name}</td>
           <td className="border">{planet.rotation_period}</td>
