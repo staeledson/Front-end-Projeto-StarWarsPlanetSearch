@@ -20,7 +20,6 @@ const requestAPI = async () => {
     results.forEach((result) => {
       delete result.residents;
     });
-    console.log(results);
     return results;
   } catch (error) {
     throw new Error(error.message);

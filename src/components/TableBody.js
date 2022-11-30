@@ -32,7 +32,6 @@ export default function TableBody() {
 
   return (
     <tbody>
-      <p>body</p>
       {handleFilter()?.map((planet, index) => (
         <tr key={ index }>
           <td className="border">{planet.name}</td>
