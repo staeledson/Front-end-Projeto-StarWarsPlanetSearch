@@ -2,10 +2,38 @@ import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
 export default function TableBody() {
-  const { filtered } = useContext(AppContext);
+  const { planets,
+    selectedFilters, inputFilter } = useContext(AppContext);
+
+  const handleFilter = () => {
+    const copyPlanets = [...planets];
+    // Filtrando com os valores do input
+    const retornoFilterInput = copyPlanets
+      .filter((planet) => planet.name.toUpperCase().includes(inputFilter.toUpperCase()));
+
+    // Retornando um array já com os valores de filtros aplicados
+    const filteredNameNConditions = retornoFilterInput.filter((planet) => {
+      const filterResults = selectedFilters.map(({ column, condition, value }) => {
+        switch (condition) {
+        case 'maior que':
+          return Number(planet[column]) > Number(value);
+        case 'menor que':
+          return Number(planet[column]) < Number(value);
+        case 'igual a':
+          return Number(planet[column]) === Number(value);
+        default:
+          return true;
+        }
+      });
+      return filterResults.every((el) => el);
+    });
+    return filteredNameNConditions;
+  };
+
   return (
     <tbody>
-      {filtered && filtered.map((planet, index) => (
+      <p>body</p>
+      {handleFilter()?.map((planet, index) => (
         <tr key={ index }>
           <td className="border">{planet.name}</td>
           <td className="border">{planet.rotation_period}</td>
