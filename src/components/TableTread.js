@@ -4,19 +4,19 @@ function TableTread() {
   return (
     <thead>
       <tr>
-        <th className="tread">Name</th>
-        <th className="tread">Rotation Period</th>
-        <th className="tread">Orbital Period</th>
-        <th className="tread">Diameter</th>
-        <th className="tread">Climate</th>
-        <th className="tread">Gravity</th>
-        <th className="tread">Terrain</th>
-        <th className="tread">Surface Water</th>
-        <th className="tread">Population</th>
-        <th className="tread">Films</th>
-        <th className="tread">Created</th>
-        <th className="tread">Edited</th>
-        <th className="tread">Url</th>
+        <th className="tabela">Name</th>
+        <th className="tabela">Rotation Period</th>
+        <th className="tabela">Orbital Period</th>
+        <th className="tabela">Diameter</th>
+        <th className="tabela">Climate</th>
+        <th className="tabela">Gravity</th>
+        <th className="tabela">Terrain</th>
+        <th className="tabela">Surface Water</th>
+        <th className="tabela">Population</th>
+        <th className="tabela">Films</th>
+        <th className="tabela">Created</th>
+        <th className="tabela">Edited</th>
+        <th className="tabela">Url</th>
       </tr>
     </thead>
   );

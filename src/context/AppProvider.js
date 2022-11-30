@@ -7,10 +7,17 @@ function AppProvider({ children }) {
   const [newPlanets, setNewPlanets] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [inputFilter, setInputFilter] = useState('');
-  const [cloumnFilter, setCloumnFilter] = useState('population');
+  const [columnFilter, setColumnFilter] = useState('population');
   const [comparisonFilter, setComparisonFilter] = useState('maior que');
   const [valueFilter, setValueFilter] = useState(0);
-  const [arrFilter, setArrFilter] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [columns, setColumns] = useState([
+    'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water']);
+  const [selected, setSelected] = useState({
+    column: columns[0],
+    condition: 'maior que',
+    value: '0',
+  });
 
   useEffect(() => {
     setNewPlanets([...planets]);
@@ -21,8 +28,12 @@ function AppProvider({ children }) {
   }, [isLoading]);
 
   useEffect(() => {
-    setFiltered(newPlanets);
-  }, [inputFilter]);
+    setFiltered(filtered);
+  }, [setInputFilter]);
+
+  useEffect(() => {
+    setColumnFilter(columnFilter);
+  }, [selectedFilters]);
 
   const value = useMemo(
     () => ({
@@ -35,14 +46,18 @@ function AppProvider({ children }) {
       setFiltered,
       inputFilter,
       setInputFilter,
-      cloumnFilter,
-      setCloumnFilter,
+      selected,
+      setSelected,
+      selectedFilters,
+      setSelectedFilters,
+      columnFilter,
+      setColumnFilter,
       comparisonFilter,
       setComparisonFilter,
       valueFilter,
       setValueFilter,
-      arrFilter,
-      setArrFilter,
+      columns,
+      setColumns,
     }),
     [planets,
       isLoading,
@@ -53,14 +68,18 @@ function AppProvider({ children }) {
       setFiltered,
       inputFilter,
       setInputFilter,
-      cloumnFilter,
-      setCloumnFilter,
+      selected,
+      setSelected,
+      selectedFilters,
+      setSelectedFilters,
+      columnFilter,
+      setColumnFilter,
       comparisonFilter,
       setComparisonFilter,
       valueFilter,
       setValueFilter,
-      arrFilter,
-      setArrFilter],
+      columns,
+      setColumns],
   );
 
   return <AppContext.Provider value={ value }>{children}</AppContext.Provider>;
