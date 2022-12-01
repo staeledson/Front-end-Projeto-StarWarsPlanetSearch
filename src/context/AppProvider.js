@@ -18,6 +18,12 @@ function AppProvider({ children }) {
     condition: 'maior que',
     value: '0',
   });
+  const [orderColumns, setOrderColumns] = useState([
+    'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water']);
+  const [order, setOrder] = useState({
+    column: 'population',
+    sort: 'ASC',
+  });
 
   useEffect(() => {
     setNewPlanets([...planets]);
@@ -58,6 +64,10 @@ function AppProvider({ children }) {
       setValueFilter,
       columns,
       setColumns,
+      order,
+      setOrder,
+      orderColumns,
+      setOrderColumns,
     }),
     [planets,
       isLoading,
@@ -79,7 +89,11 @@ function AppProvider({ children }) {
       valueFilter,
       setValueFilter,
       columns,
-      setColumns],
+      setColumns,
+      order,
+      setOrder,
+      orderColumns,
+      setOrderColumns],
   );
 
   return <AppContext.Provider value={ value }>{children}</AppContext.Provider>;

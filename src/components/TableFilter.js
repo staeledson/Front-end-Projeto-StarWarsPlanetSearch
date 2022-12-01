@@ -16,6 +16,9 @@ function TableFilter() {
     setSelected,
     columns,
     setColumns,
+    order,
+    setOrder,
+    orderColumns,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -47,7 +50,10 @@ function TableFilter() {
       setValueFilter(Number(event.target.value));
       setSelected({ ...selected, value: Number(event.target.value) });
       break;
-
+    case 'column-sort':
+      // setValueFilter(Number(event.target.value));
+      setOrder({ ...order, column: Number(event.target.value) });
+      break;
     default:
       break;
     }
@@ -122,7 +128,49 @@ function TableFilter() {
           >
             Remover
           </button>
-
+          <div>
+            <select
+              className="filter_elements"
+              data-testid="column-sort"
+              name="column-sort"
+              value={ order.column }
+              onChange={ handleChange }
+            >
+              {orderColumns.map((c, index) => (
+                (<option key={ index }>{c}</option>)
+              ))}
+            </select>
+            <label htmlFor="orderDirection">
+              <input
+                type="radio"
+                name="orderDirection"
+                value="ASC"
+                checked={ order.sort === 'ASC' }
+                data-testid="column-sort-input-asc"
+                onChange={ ({ target }) => setOrder({ ...order, sort: target.value }) }
+              />
+              Crescente
+            </label>
+            <label htmlFor="orderDirection">
+              <input
+                type="radio"
+                name="orderDirection"
+                value="DESC"
+                checked={ order.sort === 'DESC' }
+                data-testid="column-sort-input-desc"
+                onChange={ ({ target }) => setOrder({ ...order, sort: target.value }) }
+              />
+              Decrescente
+            </label>
+            <button
+              className="form_input_element"
+              type="button"
+              // onClick={ handleRemoveButtonClick }
+              data-testid="column-sort-button"
+            >
+              Ordenar
+            </button>
+          </div>
         </section>
       </form>
     )

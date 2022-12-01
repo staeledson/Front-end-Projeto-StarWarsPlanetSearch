@@ -8,15 +8,15 @@ function FilterSpace() {
   } = useContext(AppContext);
 
   const handleRemoveFilters = (event) => {
-    console.log(event.target);
-    console.log(event.target.name);
+    // console.log(event.target);
+    // console.log(event.target.name);
     if (selectedFilters.length === 1) {
       setSelectedFilters([]);
     }
     const a = [...selectedFilters];
-    // a.splice(event.target.name, 1);
-    // a.filter((v) => (v.name !== event.target.name));
-    console.log(a.filter((v) => (v.column !== event.target.name)));
+    // // a.splice(event.target.name, 1);
+    // // a.filter((v) => (v.name !== event.target.name));
+    // console.log(a.filter((v) => (v.column !== event.target.name)));
     setSelectedFilters(a.filter((v) => (v.column !== event.target.name)));
     // setColumns();
     // console.log('a: ', a);
