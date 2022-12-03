@@ -8,19 +8,11 @@ function FilterSpace() {
   } = useContext(AppContext);
 
   const handleRemoveFilters = (event) => {
-    // console.log(event.target);
-    // console.log(event.target.name);
     if (selectedFilters.length === 1) {
       setSelectedFilters([]);
     }
     const a = [...selectedFilters];
-    // // a.splice(event.target.name, 1);
-    // // a.filter((v) => (v.name !== event.target.name));
-    // console.log(a.filter((v) => (v.column !== event.target.name)));
     setSelectedFilters(a.filter((v) => (v.column !== event.target.name)));
-    // setColumns();
-    // console.log('a: ', a);
-    // console.log('id : ', event.target.id);
   };
 
   return (
@@ -29,7 +21,7 @@ function FilterSpace() {
         selectedFilters.length !== 0
           && (selectedFilters.map((filtro) => (
             <section key={ filtro.column } className="filter_itens" data-testid="filter">
-              <p>
+              <p data-testid="filter-unit">
                 {filtro.column}
                 {' '}
                 {filtro.condition}
@@ -38,7 +30,6 @@ function FilterSpace() {
               </p>
               <button
                 type="button"
-                // id={ filtro.column }
                 name={ filtro.column }
                 onClick={ handleRemoveFilters }
               >

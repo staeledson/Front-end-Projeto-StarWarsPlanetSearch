@@ -63,4 +63,75 @@ describe('Testa o arquivo App', () => {
     userEvent.click(filterBtn);
   });
 
+    test('Testa remove do filterSpace', async () => {
+    renderUserApp();
+    
+    const options = await screen.findByTestId("column-filter");
+    expect(options).toBeInTheDocument();
+    
+    const paramers = await screen.findByTestId("comparison-filter");
+    expect(paramers).toBeInTheDocument();
+    
+    fireEvent.change(options, { target: { value: 'diameter' } });
+    fireEvent.change(paramers, { target: { value: 'igual a' } } );
+    
+    const filterBtn = await screen.findByRole('button', { name: /filtrar/i });
+    userEvent.click(filterBtn);
+    
+    const filter = await screen.findByTestId("filter");
+    expect(filter).toBeInTheDocument();
+
+    const optionsfilter1 = await screen.findByTestId("column-filter");
+    fireEvent.change(optionsfilter1, { target: { value: 'surface_water' } });
+    const paramersfilter2 = await screen.findByTestId("comparison-filter");
+    fireEvent.change(paramersfilter2, { target: { value: 'menor que' } } );
+    const filtros = await screen.findByTestId("column-filter");
+    expect(filtros).toBeInTheDocument();
+    
+    const removeBtn = await screen.findByRole('button', { name: /Remover/i });
+    userEvent.click(removeBtn);
+    expect(filter).not.toBeInTheDocument();
+  });
+
+    test('Testa se é aplicado o filtro "menor que" 3000 de população', async () => {
+    renderUserApp();
+    await screen.findByText('Tatooine');
+
+    const selectColumn = screen.getByTestId('column-filter');
+    const selectComparasion = screen.getByTestId('comparison-filter');
+    const inputNumber = screen.getByTestId('value-filter');
+    const getBtnFilter = screen.getByTestId('button-filter');
+
+    userEvent.selectOptions(selectColumn, 'population');
+    userEvent.selectOptions(selectComparasion, 'menor que');
+    userEvent.type(inputNumber, '3000');
+    userEvent.click(getBtnFilter);
+
+    const yavin = await screen.findByText('Yavin IV');
+    const rows = screen.getAllByRole('row');
+
+    expect(rows).toHaveLength(2)
+    expect(yavin).toBeInTheDocument();
+  });
+
+      test('Testa se é aplicado o filtro "maior que" 200000 de população', async () => {
+    renderUserApp();
+    await screen.findByText('Tatooine');
+
+    const selectColumn = screen.getByTestId('column-filter');
+    const selectComparasion = screen.getByTestId('comparison-filter');
+    const inputNumber = screen.getByTestId('value-filter');
+    const getBtnFilter = screen.getByTestId('button-filter');
+
+    userEvent.selectOptions(selectColumn, 'population');
+    userEvent.selectOptions(selectComparasion, 'maior que');
+    userEvent.type(inputNumber, '200000');
+    userEvent.click(getBtnFilter);
+
+    const yavin = await screen.findByText('Bespin');
+    const rows = screen.getAllByRole('row');
+
+    expect(rows).toHaveLength(7)
+    expect(yavin).toBeInTheDocument();
+  });
 });

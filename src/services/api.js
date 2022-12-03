@@ -1,8 +1,8 @@
-// import testDataMock from './testDataMock';
+// import testDataMock from '../tests/testDataMock';
 
 // const requestAPI = async () => {
 //   try {
-//     const resultsMock = [...testDataMock.results];
+//     const resultsMock = [...testDataMock];
 //     resultsMock.forEach((result) => {
 //       delete result.residents;
 //     });

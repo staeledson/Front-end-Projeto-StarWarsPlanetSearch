@@ -137,7 +137,7 @@ function TableFilter() {
               onChange={ handleChange }
             >
               {orderColumns.map((c, index) => (
-                (<option key={ index }>{c}</option>)
+                (<option key={ index } data-testid="filter-unit">{c}</option>)
               ))}
             </select>
             <label htmlFor="orderDirection">
